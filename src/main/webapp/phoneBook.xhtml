@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Phone Book</title>
+</h:head>
+<h:body>
+
+    <p:dataTable id="singleDT" var="contact" value="#{controller.contacts}">
+
+        <p:ajax event="rowSelect" update="@this"/>
+        <f:facet name="header">
+            Phone Book
+        </f:facet>
+        <p:column headerText="Id">
+            <h:outputText value="#{contact.id}"/>
+        </p:column>
+        <p:column headerText="First Name">
+            <h:outputText value="#{contact.firstName}"/>
+        </p:column>
+        <p:column headerText="Last Name">
+            <h:outputText value="#{contact.lastName}"/>
+        </p:column>
+        <p:column headerText="Category">
+            <h:outputText value="#{contact.category}"/>
+        </p:column>
+        <p:column headerText="Email">
+            <h:outputText value="#{contact.email}"/>
+        </p:column>
+        <p:column headerText="Phone">
+            <h:outputText value="#{contact.phone}"/>
+        </p:column>
+    </p:dataTable>
+
+    <h:form>
+        <h:inputText value="#{controller.newContact.firstName}"/>
+        <h:inputText value="#{controller.newContact.lastName}"/>
+        <h:inputText value="#{controller.newContact.category}"/>
+        <h:inputText value="#{controller.newContact.email}"/>
+        <h:inputText value="#{controller.newContact.phone}"/>
+        <h:commandButton value="submit" action="#{controller.createContact()}"/>
+    </h:form>
+
+    <h:form>
+        <h:inputText value="#{controller.idDelete}"/>
+        <h:commandButton value="submit" action="#{controller.deleteContact()}"/>
+        <h:outputText id="message" value="#{controller.message}"/>
+    </h:form>
+
+    <h:form>
+        <h:inputText value="#{controller.searchString}"/>
+        <h:commandButton value="submit" action="#{controller.searchContact()}"/>
+    </h:form>
+
+    <p:dataTable id="singleDTA" var="contact" value="#{controller.searchResult}">
+
+        <p:ajax event="rowSelect" update="@this"/>
+        <f:facet name="header">
+            Phone Book
+        </f:facet>
+        <p:column headerText="Id">
+            <h:outputText value="#{contact.id}"/>
+        </p:column>
+        <p:column headerText="First Name">
+            <h:outputText value="#{contact.firstName}"/>
+        </p:column>
+        <p:column headerText="Last Name">
+            <h:outputText value="#{contact.lastName}"/>
+        </p:column>
+        <p:column headerText="Category">
+            <h:outputText value="#{contact.category}"/>
+        </p:column>
+        <p:column headerText="Email">
+            <h:outputText value="#{contact.email}"/>
+        </p:column>
+        <p:column headerText="Phone">
+            <h:outputText value="#{contact.phone}"/>
+        </p:column>
+    </p:dataTable>
+
+</h:body>
+</html>
