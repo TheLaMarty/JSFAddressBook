@@ -47,7 +47,7 @@ public class Controller {
 
     }
 
-    public void searchContact(){
+    public void searchContact() {
         contactService.searchContact(searchString);
     }
 
@@ -89,5 +89,13 @@ public class Controller {
 
     public void setSearchResult(List<Contact> searchResult) {
         this.searchResult = searchResult;
+    }
+
+    public void updateContact() {
+
+        for (Contact contact : contacts
+                ) {
+            contact.setEditable(false);
+        }
     }
 }

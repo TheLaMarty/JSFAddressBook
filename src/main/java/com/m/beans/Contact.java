@@ -8,6 +8,7 @@ public class Contact {
     private String email;
     private String phone;
     private String category;
+    private boolean editable;
 
     public Contact() {
 
@@ -67,5 +68,18 @@ public class Contact {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+
+        this.editable = editable;
+    }
+
+    public void editContact(Contact contact) {
+        contact.setEditable(true);
     }
 }

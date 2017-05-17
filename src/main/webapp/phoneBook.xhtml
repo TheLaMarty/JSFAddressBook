@@ -11,32 +11,45 @@
     <title>Phone Book</title>
 </h:head>
 <h:body>
+    <h:form>
+        <p:dataTable id="singleDT" var="contact" value="#{controller.contacts}">
 
-    <p:dataTable id="singleDT" var="contact" value="#{controller.contacts}">
+            <p:ajax event="rowSelect" update="@this"/>
+            <f:facet name="header">
+                Phone Book
+            </f:facet>
+            <p:column headerText="Id">
+                <h:inputText value="#{contact.id}" size="10" rendered="#{contact.editable}"/>
+                <h:outputText value="#{contact.id}" rendered="#{not contact.editable}"/>
 
-        <p:ajax event="rowSelect" update="@this"/>
-        <f:facet name="header">
-            Phone Book
-        </f:facet>
-        <p:column headerText="Id">
-            <h:outputText value="#{contact.id}"/>
-        </p:column>
-        <p:column headerText="First Name">
-            <h:outputText value="#{contact.firstName}"/>
-        </p:column>
-        <p:column headerText="Last Name">
-            <h:outputText value="#{contact.lastName}"/>
-        </p:column>
-        <p:column headerText="Category">
-            <h:outputText value="#{contact.category}"/>
-        </p:column>
-        <p:column headerText="Email">
-            <h:outputText value="#{contact.email}"/>
-        </p:column>
-        <p:column headerText="Phone">
-            <h:outputText value="#{contact.phone}"/>
-        </p:column>
-    </p:dataTable>
+            </p:column>
+            <p:column headerText="First Name">
+                <h:inputText value="#{contact.firstName}" size="10" rendered="#{contact.editable}"/>
+                <h:outputText value="#{contact.firstName}" rendered="#{not contact.editable}"/>
+            </p:column>
+            <p:column headerText="Last Name">
+                <h:inputText value="#{contact.lastName}" size="10" rendered="#{contact.editable}"/>
+                <h:outputText value="#{contact.lastName}" rendered="#{not contact.editable}"/>
+            </p:column>
+            <p:column headerText="Category">
+                <h:inputText value="#{contact.category}" size="10" rendered="#{contact.editable}"/>
+                <h:outputText value="#{contact.category}" rendered="#{not contact.editable}"/>
+            </p:column>
+            <p:column headerText="Email">
+                <h:inputText value="#{contact.email}" size="10" rendered="#{contact.editable}"/>
+                <h:outputText value="#{contact.email}" rendered="#{not contact.editable}"/>
+            </p:column>
+            <p:column headerText="Phone">
+                <h:inputText value="#{contact.phone}" size="10" rendered="#{contact.editable}"/>
+                <h:outputText value="#{contact.phone}" rendered="#{not contact.editable}"/>
+            </p:column>
+            <p:column headerText="Edit">
+                <h:commandLink value="Edit" action="#{contact.editContact(contact)}"
+                               rendered="#{not contact.editable}"/>
+            </p:column>
+        </p:dataTable>
+        <h:commandButton value="Save Changes" action="#{controller.updateContact()}"/>
+    </h:form>
 
     <h:form>
         <h:inputText value="#{controller.newContact.firstName}"/>
@@ -44,18 +57,18 @@
         <h:inputText value="#{controller.newContact.category}"/>
         <h:inputText value="#{controller.newContact.email}"/>
         <h:inputText value="#{controller.newContact.phone}"/>
-        <h:commandButton value="submit" action="#{controller.createContact()}"/>
+        <h:commandButton value="Add" action="#{controller.createContact()}"/>
     </h:form>
 
     <h:form>
         <h:inputText value="#{controller.idDelete}"/>
-        <h:commandButton value="submit" action="#{controller.deleteContact()}"/>
+        <h:commandButton value="Delete" action="#{controller.deleteContact()}"/>
         <h:outputText id="message" value="#{controller.message}"/>
     </h:form>
 
     <h:form>
         <h:inputText value="#{controller.searchString}"/>
-        <h:commandButton value="submit" action="#{controller.searchContact()}"/>
+        <h:commandButton value="Search" action="#{controller.searchContact()}"/>
     </h:form>
 
     <p:dataTable id="singleDTA" var="contact" value="#{controller.searchResult}">

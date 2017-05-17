@@ -39,7 +39,7 @@ public class ContactService {
 
         for (int i = 0; i < contacts.size(); i++) {
 
-            if (contacts.get(i).getFirstName().equals(searchString) || contacts.get(i).getLastName().equals(searchString) || contacts.get(i).getCategory().equals(searchString) || contacts.get(i).getEmail().equals(searchString) || contacts.get(i).getPhone().equals(searchString) && contacts.get(i).getFirstName() != null) {
+            if (contacts.get(i).getFirstName().equals(searchString) /*|| contacts.get(i).getLastName().equals(searchString) || contacts.get(i).getCategory().equals(searchString) || contacts.get(i).getEmail().equals(searchString) || contacts.get(i).getPhone().equals(searchString) && contacts.get(i).getFirstName() != null*/) {
 
                 searchResult.add(contacts.get(i));
             }
